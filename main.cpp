@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
 	double R;
 	cout<<"Region number = ";
 	cin>>R;
-	cout<<"\n Hello region "<<R;
+	cout<<"\n Hello region! "<<R;
 
     cout << "* Create Object base" << endl;
     Base base;
