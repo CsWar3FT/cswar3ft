@@ -8,7 +8,7 @@ public:
     Base() { cout << "Construct Base object\n"; }
     ~Base() { cout << "Destruct Base object\n"; }
 
-	void func() { cout << "Function1 func() of class Base\n"; }
+	void func() { cout << "Function func() of class Base\n"; }
 	void func2() { cout << "Function func2() of class Base\n"; }
 };
 
