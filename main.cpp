@@ -11,11 +11,10 @@ public:
 	void func() { cout << "Function1 func() of class Base\n"; }
 };
 
-int main(int argc, char *argv[])
+int main()
 {
     cout << "* Create Object base" << endl;
     Base base;
-
     cout << "* Call method func() for object base" << endl;
     base.func();
 	return 0;
