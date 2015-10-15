@@ -1,49 +1,30 @@
-#include <iostream>
+#include <QtGlobal>
+#if QT_VERSION < 0x050000
+#include <QtGui>
+#else
+#include <QtWidgets>
+#endif
 
 using namespace std;
 
-class Base
-{
-public:
-    Base() { cout << "Construct Base object\n"; }
-    ~Base() { cout << "Destruct Base object\n"; }
-
-	void func() { cout << "Function func() of class Base\n"; }
-	void func2() { cout << "Function func2() of class Base\n"; }
-};
-
-class Child: public Base
-{
-public:
-    Child() { cout << "Construct Child object\n"; }
-    ~Child() { cout << "Destruct Child object\n"; }
-	
-	void func() { cout << "Function func() of class Child\n"; }
-	void func2() { cout << "Function func2() of class Child\n"; }
-};
-
 int main(int argc, char *argv[])
 {
-	double R;
-	cout<<"Region number = ";
-	cin>>R;
-	cout<<"\n Hello region "<<R;
+    QApplication app(argc,argv);
 
-    cout << "* Create Object base" << endl;
-    Base base;
+    QWidget *widget = new QWidget;
+    QLineEdit *first_line = new QLineEdit();
+    QLineEdit *second_line = new QLineEdit();
 
-    cout << "* Create Object child" << endl;
-    Child child;
+    QVBoxLayout *layout = new QVBoxLayout;
+    layout->addWidget(first_line);
+    layout->addWidget(second_line);
 
-    cout << "* Call method func() for object base" << endl;
-    base.func();
+    QObject::connect(first_line,SIGNAL(textEdited(QString)),second_line,SLOT(setText(QString)));
+    QObject::connect(second_line,SIGNAL(textEdited(QString)),first_line,SLOT(setText(QString)));
 
-	cout << "* Call method func2() for object base" << endl;
-	base.func2();
+    widget->setLayout(layout);
+    widget->setWindowFlags(Qt::Window);
+    widget->show();
 
-	cout << "* Call method func() for object child" << endl;
-	child.func();
-
-	cin.get();
-	return 0;
+    return app.exec();
 }
